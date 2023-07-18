@@ -76,33 +76,18 @@ function DownloadClickListener(src) {
 
 // Copy SVG click listener
 function CopyClickListener(svgFileURL) {
-      let svgContainer = "";
-
-      fetch(svgFileURL)
+    fetch(svgFileURL)
         .then(response => response.text())
         .then(svgContent => {
-          svgContainer = svgContent;
+            navigator.clipboard.writeText(svgContent).then(function() {
+                console.log("Copying to clipboard was successful!");
+            }, function(err) {
+                console.error("Could not copy text: ", err);
+            })
         })
-
-    navigator.clipboard.writeText(svgContainer).then(function() {
-        console.log("Copying to clipboard was successful!");
-    }, function(err) {
-        console.error("Could not copy text: ", err);
-    })
 }
 
-// Creates SVG to copy from URL
-// function createSvgFromUrl(url) {
-//     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-//     const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-//     use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', url);
-//     svg.appendChild(use);
-//     document.body.appendChild(svg);
-//     return svg;
-//   }
-  
-
 // Insert 16 random logos
-for (let i = 0; i < 16; i++) {
+for (let i = 0; i < 24; i++) {
     createLogoComponent();
 }
