@@ -75,21 +75,20 @@ function DownloadClickListener(src) {
 }
 
 // Copy SVG click listener
-function CopyClickListener(src) {
-    // const svg = createSvgFromUrl(src);
+function CopyClickListener(svgFileURL) {
+      let svgContainer = "";
 
-    // const range = document.createRange();
-    // range.selectNode(svg);
+      fetch(svgFileURL)
+        .then(response => response.text())
+        .then(svgContent => {
+          svgContainer = svgContent;
+        })
 
-    // // Add the range to the user's clipboard
-    // window.getSelection().removeAllRanges();
-    // window.getSelection().addRange(range);
-
-    // // Copy the selected content to the clipboard
-    // document.execCommand('copy');
-
-    // // Clear the selection
-    // window.getSelection().removeAllRanges();
+    navigator.clipboard.writeText(svgContainer).then(function() {
+        console.log("Copying to clipboard was successful!");
+    }, function(err) {
+        console.error("Could not copy text: ", err);
+    })
 }
 
 // Creates SVG to copy from URL
