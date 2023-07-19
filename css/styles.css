@@ -109,7 +109,7 @@ h1 {
 
     color: var(--primary-950, #2C1C5F);
     text-align: center;
-    font-family: Clash Display Variable;
+    font-family: 'ClashDisplay-Variable';
     font-size: 72px;
     font-style: normal;
     font-weight: 300;
